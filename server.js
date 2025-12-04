@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const swaggerUI = require('swagger-ui-express');
-const swaggerDocument = require('./openapi.json');   // ✅ FIXED PATH
+const swaggerDocument = require('../project/openapi.json');   // ✅ FIXED PATH
 
 const app = express();
 const PORT = process.env.PORT || 3000;
