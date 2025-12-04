@@ -3,21 +3,31 @@
 // Node.js + Express + MongoDB Atlas
 // ==============================
 
-
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const swaggerUI = require('swagger-ui-express');
+const swaggerDocument = require('./openapi.json');   // ✅ FIXED PATH
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-// ====== Middleware ======
-app.use(cors());
+// Middleware
 app.use(express.json());
+app.use(cors());
 
+// Swagger Docs
+// Swagger Docs
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+console.log("📄 Swagger docs mounted at /docs");
+
+
+// Default route
+app.get('/', (req, res) => {
+    res.send('API is running...');
+});
 
 // ====== Mongoose Schema & Model ======
 const studentSchema = new mongoose.Schema({

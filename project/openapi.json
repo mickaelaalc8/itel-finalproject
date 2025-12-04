@@ -1,0 +1,206 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Student CRUD API",
+    "version": "1.0.0",
+    "description": "API documentation for Student CRUD operations"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/v1/students": {
+      "get": {
+        "summary": "Get all students",
+        "responses": {
+          "200": {
+            "description": "List of students"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new student",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Student"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Student created" }
+        }
+      }
+    },
+    "/api/v1/students/{id}": {
+      "get": {
+        "summary": "Get a student by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student found" },
+          "404": { "description": "Not found" }
+        }
+      },
+      "put": {
+        "summary": "Update a student",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student updated" }
+        }
+      },
+      "patch": {
+        "summary": "Partially update student",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student patched" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a student",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student deleted" }
+        }
+      }
+    },
+    "/api/v1/students/course/{course}": {
+      "get": {
+        "summary": "Get students by course",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "course",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student list" }
+        }
+      }
+    },
+    "/api/v1/students/section/{section}": {
+      "get": {
+        "summary": "Get students by section",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "section",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student list" }
+        }
+      }
+    },
+    "/api/v1/students/year/{year}": {
+      "get": {
+        "summary": "Get students by year",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "year",
+            "required": true,
+            "schema": { "type": "number" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student list" }
+        }
+      }
+    },
+    "/api/v1/students/email/{email}": {
+      "get": {
+        "summary": "Get student by email",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student retrieved" }
+        }
+      }
+    },
+    "/api/v1/students/studentNo/{studentNo}": {
+      "get": {
+        "summary": "Get student by studentNo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "studentNo",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Student retrieved" }
+        }
+      }
+    }
+  },
+
+  "components": {
+    "schemas": {
+      "Student": {
+        "type": "object",
+        "properties": {
+          "firstName": { "type": "string" },
+          "lastName": { "type": "string" },
+          "middleInitial": { "type": "string" },
+          "email": { "type": "string" },
+          "course": { "type": "string" },
+          "section": { "type": "string" },
+          "studentNo": { "type": "string" },
+          "year": { "type": "number" }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "course",
+          "section",
+          "studentNo"
+        ]
+      }
+    }
+  }
+}
